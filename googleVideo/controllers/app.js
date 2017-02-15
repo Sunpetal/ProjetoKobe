@@ -1,39 +1,24 @@
 (function() {
-  var app = angular.module('gemStore', []);
+
+  //top-level module attached by ng-app
+  var app = angular.module('gemStore', ['store-products']); //gemstore depende do store-products
 
   app.controller('StoreController', function(){
     this.products = gems;
   });
 
-  app.controller('panelController', function(){
-    this.tab = 1;
-
-    this.selectTab = function(newValue){
-      this.tab = newValue;
-    };
-
-    this.isSelected = function(tabName){
-      return this.tab === tabName;
-    }; 
-  });
-
-  app.controller('GalleryController', function(){
-    this.current = 0;
-
-    this.setCurrent = function(index){
-      this.current = index;
-    };
-  });
- 
 app.controller('ReviewController', function() {
   this.review = {};
 
+
   this.addReview = function(product) {
+     this.review.createdOn = Date.now();
     product.reviews.push(this.review);
       this.review = {};
   };
 
 });
+
 
   var gems = [{
     name: 'Azurite',
@@ -51,13 +36,15 @@ app.controller('ReviewController', function() {
     {
       stars: 5,
       body: "love this product",
-      author: "joe@gmail.com"
+      author: "joe@gmail.com",
+      createdOn: 1397490980837
     },
      {
       stars: 5,
       body: "love this product",
-      author: "joe@gmail.com"
-    } ]
+      author: "joe@gmail.com",
+      createdOn: 1397490980837
+    } ], 
   }, {
     name: 'Bloodstone',
     description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
@@ -74,7 +61,8 @@ app.controller('ReviewController', function() {
    reviews:[  {
       stars: 5,
       body: "love this product",
-      author: "joe@gmail.com"
+      author: "joe@gmail.com",
+      createdOn: 1397490980837
     }]
   }, {
     name: 'Zircon',
@@ -92,7 +80,8 @@ app.controller('ReviewController', function() {
     reviews:[ {
       stars: 5,
       body: "love this product",
-      author: "joe@gmail.com"
+      author: "joe@gmail.com",
+      createdOn: 1397490980837
     }]
   }];
 })();

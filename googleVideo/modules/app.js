@@ -5,6 +5,8 @@
 
  app.controller('StoreController', ['$http', function($http){
     
+
+    
      var store = this;
 
     store.products = [];

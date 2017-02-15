@@ -3,9 +3,20 @@
   //top-level module attached by ng-app
   var app = angular.module('gemStore', ['store-products']); //gemstore depende do store-products
 
-  app.controller('StoreController', function(){
-    this.products = gems;
-  });
+ app.controller('StoreController', ['$http', function($http){
+    
+     var store = this;
+
+    store.products = [];
+    $http.get('./store-products.json').then(function(data){
+      
+     // console.dir(data);
+          console.log(data);
+      store.products = data;
+
+      });
+    
+  }]);
 
 app.controller('ReviewController', function() {
   this.review = {};
@@ -18,6 +29,7 @@ app.controller('ReviewController', function() {
   };
 
 });
+
 
 
   var gems = [{
